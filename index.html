@@ -307,7 +307,7 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   const status=document.getElementById('form-status'),btn=this.querySelector('button[type="submit"]');
   btn.textContent='Sending...';btn.disabled=true;
   const data=new FormData(this);
-  data.append('access_key','YOUR_WEB3FORMS_KEY');
+  data.append('access_key','28891f85-54cf-4d52-bcfe-4adce1927bea');
   data.append('subject','New Quote Request - Perth Brickwork SLD');
   try{
     const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
