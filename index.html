@@ -247,7 +247,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:40px 24px}
         <div class="contact-item"><span class="contact-icon">📍</span><div><div class="contact-label">Location</div><span class="contact-val">Yanchep, Perth WA 6035</span></div></div>
       </div>
     </div>
-    <form class="contact-form fade-in" id="contactForm">
+    <form class="contact-form fade-in" id="contactForm" action="https://api.web3forms.com/submit" method="POST"><input type="hidden" name="access_key" value="28891f85-54cf-4d52-bcfe-4adce1927bea"><input type="hidden" name="subject" value="New Quote Request - Perth Brickwork SLD"><input type="hidden" name="redirect" value="https://presecio.github.io/Perth-Brickwork"><input type="checkbox" name="botcheck" style="display:none">
       <div class="form-row">
         <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="John" required></div>
         <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith"></div>
@@ -302,21 +302,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:40px 24px}
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
-document.getElementById('contactForm').addEventListener('submit',async function(e){
-  e.preventDefault();
-  const status=document.getElementById('form-status'),btn=this.querySelector('button[type="submit"]');
-  btn.textContent='Sending...';btn.disabled=true;
-  const data=new FormData(this);
-  data.append('access_key','28891f85-54cf-4d52-bcfe-4adce1927bea');
-  data.append('subject','New Quote Request - Perth Brickwork SLD');
-  try{
-    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
-    const json=await res.json();
-    if(json.success){status.className='success';status.textContent="Thanks! We'll be in touch within 24 hours.";this.reset();}
-    else throw new Error();
-  }catch{status.className='error';status.textContent='Something went wrong. Please call 0407 473 189.';}
-  btn.textContent='Send Enquiry';btn.disabled=false;
-});
+// form submits natively via Web3Forms
 
 // ── CHATBOT (rule-based, no API needed) ──
 const bubble=document.getElementById('chat-bubble'),
